@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& i) {
+        sort(i.begin(),i.end());
+        vector<vector<int>> ans;
+        pair<int,int> t;
+        t.first=i[0][0];
+        t.second=i[0][1];
+        for(int j=1;j<i.size();j++){
+              if(i[j][0]<=t.second){
+                  t.first=min(t.first,i[j][0]);
+                  t.second=max(t.second,i[j][1]);
+              }else{
+                  ans.push_back({t.first,t.second});
+                  t.first=i[j][0];
+                  t.second=i[j][1];
+              }
+        }
+        ans.push_back({t.first,t.second});
+        return ans;
+    }
+};

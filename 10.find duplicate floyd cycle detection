@@ -1,0 +1,26 @@
+//floydd cycle detection immutable array
+int findDuplicate(vector<int>& a) {
+         int s = a[0];
+        int f = a[0];
+        do{
+            s = a[s];
+            f = a[a[f]];
+           }
+        while(s!=f);
+        s=a[0];
+        while(s!=f){
+            s=a[s];
+            f=a[f];
+        }
+        return s;
+    }
+    //mutable array
+    int findDuplicate(vector<int>& a) {
+       for(int i=0;i<a.size();i++){
+           if(a[abs(a[i])]>=0)
+              a[abs(a[i])]=a[abs(a[i])]*-1;
+           else
+               return  abs(a[i]);
+       }
+        return -1;
+    }
